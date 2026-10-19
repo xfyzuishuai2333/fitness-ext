@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "四分化健身计划 · Daily Fit",
+  "short_name": "Daily Fit",
+  "version": "1.0.0",
+  "description": "四分化健身计划浏览器扩展，每日自动匹配训练部位、器械安排、饮食方案与卡路里消耗目标。",
+  "default_locale": "zh_CN",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "今日健身计划",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": ["storage"],
+  "host_permissions": [],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>四分化健身计划 · Daily Fit</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body class="ext-body">
+  <div class="fit-container">
+    <!-- 顶部标题 -->
+    <header class="fit-header">
+      <h1 class="fit-art-title">四分化健身</h1>
+      <p class="fit-subtitle">每日训练指南</p>
+      <div class="fit-date-bar">
+        <span id="fitDayTag">周一</span>
+        <span class="fit-date-text" id="fitTodayDate"></span>
+        <button class="fit-settings-btn" id="fitSettingsBtn" title="设置个人信息">⚙️</button>
+      </div>
+    </header>
+
+    <!-- 卡路里卡片 -->
+    <section class="fit-card fit-calorie-card">
+      <div class="fit-calorie-main">
+        <div class="fit-calorie-icon">🔥</div>
+        <div class="fit-calorie-info">
+          <div class="fit-calorie-label">今日目标消耗</div>
+          <div class="fit-calorie-value" id="fitCalorieValue">-- kcal</div>
+        </div>
+      </div>
+      <div class="fit-calorie-breakdown">
+        <div class="fit-sub-cal"><span class="fit-sub-label">BMR 基础</span><span class="fit-sub-val" id="fitBmrVal">--</span></div>
+        <div class="fit-sub-cal"><span class="fit-sub-label">活动消耗</span><span class="fit-sub-val" id="fitActivityVal">--</span></div>
+        <div class="fit-sub-cal"><span class="fit-sub-label">训练消耗</span><span class="fit-sub-val fit-train" id="fitTrainVal">--</span></div>
+      </div>
+      <div class="fit-macro-row">
+        <div class="fit-macro"><div class="fit-macro-circle" data-macro="protein">P</div><span id="fitProtein">--g</span></div>
+        <div class="fit-macro"><div class="fit-macro-circle" data-macro="carbs">C</div><span id="fitCarbs">--g</span></div>
+        <div class="fit-macro"><div class="fit-macro-circle" data-macro="fat">F</div><span id="fitFat">--g</span></div>
+      </div>
+      <div class="fit-calorie-setup" id="fitCalorieSetup">
+        <span>请在设置中填写身高/体重/年龄以计算卡路里</span>
+      </div>
+    </section>
+
+    <!-- 鼓励语艺术字 -->
+    <section class="fit-quote-section">
+      <div class="fit-quote" id="fitQuote">每一次举起，都是对软弱的告别。</div>
+      <button class="fit-quote-btn" id="fitQuoteBtn" title="换一句">🔄</button>
+    </section>
+
+    <!-- 训练概览 -->
+    <section class="fit-card fit-overview">
+      <div class="fit-overview-left">
+        <div class="fit-muscle-icon" id="fitMuscleIcon">💪</div>
+        <div>
+          <div class="fit-muscle-group" id="fitMuscleGroup">胸 + 三头肌</div>
+          <div class="fit-train-type" id="fitTrainType">训练日</div>
+        </div>
+      </div>
+      <div class="fit-overview-right">
+        <div class="fit-time-box">
+          <span class="fit-time-ic">⏱️</span>
+          <div>
+            <div class="fit-time-label">推荐训练</div>
+            <div class="fit-time-value" id="fitRecTime">上午 9:00</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 器械训练 -->
+    <section class="fit-section">
+      <h3 class="fit-section-title">
+        <span>🏋️</span> 今日器械训练
+      </h3>
+      <div class="fit-equip-list" id="fitEquipList"></div>
+    </section>
+
+    <!-- 饮食 -->
+    <section class="fit-section">
+      <h3 class="fit-section-title">
+        <span>🍱</span> 今日健康饮食
+      </h3>
+      <div class="fit-meal-grid" id="fitMealGrid"></div>
+    </section>
+
+    <!-- 小贴士 -->
+    <section class="fit-section">
+      <h3 class="fit-section-title">
+        <span>💡</span> 训练小贴士
+      </h3>
+      <div class="fit-tips" id="fitTips"></div>
+    </section>
+
+    <!-- 一周总览 -->
+    <section class="fit-section">
+      <h3 class="fit-section-title">
+        <span>📅</span> 一周计划
+      </h3>
+      <div class="fit-week-grid" id="fitWeekGrid"></div>
+    </section>
+
+    <!-- 设置面板（隐藏） -->
+    <div class="fit-settings-panel" id="fitSettingsPanel">
+      <div class="fit-settings-inner">
+        <h3>个人信息设置</h3>
+        <p class="fit-settings-hint">用于计算每日卡路里消耗目标</p>
+        <div class="fit-form-row">
+          <label>性别</label>
+          <select id="fitGender">
+            <option value="male">男</option>
+            <option value="female">女</option>
+          </select>
+        </div>
+        <div class="fit-form-row">
+          <label>年龄</label>
+          <input type="number" id="fitAge" min="14" max="100" placeholder="25">
+        </div>
+        <div class="fit-form-row">
+          <label>身高 (cm)</label>
+          <input type="number" id="fitHeight" min="100" max="230" placeholder="175">
+        </div>
+        <div class="fit-form-row">
+          <label>体重 (kg)</label>
+          <input type="number" id="fitWeight" min="30" max="200" placeholder="70">
+        </div>
+        <div class="fit-form-row">
+          <label>活动水平</label>
+          <select id="fitActivity">
+            <option value="1.2">久坐 (办公室)</option>
+            <option value="1.375">轻度活动 (每周1-3次)</option>
+            <option value="1.55" selected>中等活动 (每周3-5次)</option>
+            <option value="1.725">较高活动 (每周6-7次)</option>
+            <option value="1.9">高强度活动 (体力劳动)</option>
+          </select>
+        </div>
+        <div class="fit-settings-btns">
+          <button class="fit-btn-save" id="fitSaveSettings">保存</button>
+          <button class="fit-btn-cancel" id="fitCancelSettings">取消</button>
+        </div>
+      </div>
+    </div>
+
+    <footer class="fit-footer">
+      仅供参考 · 请根据自身情况调整
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
